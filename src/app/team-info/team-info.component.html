@@ -1,0 +1,9 @@
+<p (click)="goBack()"><</p>
+<div class=center *ngIf="team">
+  <img [src]="team.logoUrl+'light.svg'" width="200" height="200"/>
+  <h1>{{team.name}}</h1>
+  <h2>{{team.arena}}</h2>
+</div>
+<div class=skater *ngFor="let skater of team.skaters">
+  <h4>#{{skater.number}} - {{skater.fullName}} - {{skater.role}}</h4>
+</div>

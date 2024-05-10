@@ -1,0 +1,15 @@
+<p>team works!</p>
+<div *ngIf="this.teams">
+  <div *ngFor="let conference of teams">
+    {{conference.name}} Conference
+    <div *ngFor="let division of conference.divisions">
+      {{division.name}}
+      <div *ngFor="let team of division.teams">
+        <img (click)="viewTeam(team.id)" [src]="team.logoUrl+'light.svg'" width="50" height="50"/>{{team.name}}
+      </div>
+    </div>
+  </div>
+
+
+
+</div>

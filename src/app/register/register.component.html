@@ -1,0 +1,19 @@
+<p>login-register works!</p>
+
+
+<!-- Path: frontend/src/app/login-register/login-register.component.ts -->
+<body>
+    <h2>Register</h2>
+    <div>
+        <div>Name: 
+            <input [(ngModel)]="registerDto.name"/>
+        </div>
+        <div>Email: 
+            <input [(ngModel)]="registerDto.email"/>
+        </div>
+        <div>Password: 
+            <input [(ngModel)]="registerDto.password"/>
+        </div>
+        <button (click)="register(registerDto)">Register</button>
+    </div>
+</body>
