@@ -8,9 +8,12 @@ import { TeamInfoComponent } from "./team-info/team-info.component";
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
+import { SplashComponent } from './splash/splash.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 export const routes: Routes = [
-    { path: '', redirectTo: '/dev-profile', pathMatch: 'full'},
+    { path: '', component: SplashComponent},
+    { path: 'home', component: DashboardComponent},
     { path: 'dev-profile', component: DeveloperProfileComponent },
     { path: 'dev-contact', component: MailComponent },
     { path: 'team-list', component: TeamComponent },

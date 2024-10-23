@@ -4,15 +4,13 @@ import { Login } from '../models/login';
 import { AuthenticationService } from '../authentication.service';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-splash',
   standalone: true,
   imports: [FormsModule],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  templateUrl: './splash.component.html',
+  styleUrl: './splash.component.css'
 })
-export class LoginComponent {
-
-  title = 'Login';
+export class SplashComponent {
   constructor(private authenticationService: AuthenticationService) {}
   loginDto = new Login();
   
