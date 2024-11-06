@@ -1,11 +1,13 @@
-<p>team works!</p>
-<div *ngIf="this.teams">
+<div class="container">
   <div *ngFor="let conference of teams">
-    {{conference.name}} Conference
-    <div *ngFor="let division of conference.divisions">
-      {{division.name}}
-      <div *ngFor="let team of division.teams">
-        <img (click)="viewTeam(team.id)" [src]="'https://assets.nhle.com/logos/nhl/svg/' + team.shortName + '_light.svg'" width="50" height="50" />{{team.name}}
+    <div class="conference-title">{{conference.name}} Conference</div>
+    <div *ngFor="let division of conference.divisions" class="division">
+      <div class="division-title">{{division.name}}</div>
+      <div *ngFor="let team of division.teams" class="team">
+        <img (click)="viewTeam(team.id)" 
+             [src]="'https://assets.nhle.com/logos/nhl/svg/' + team.shortName + '_light.svg'" 
+             alt="{{team.name}} logo" />
+        <div>{{team.name}}</div>
       </div>
     </div>
   </div>

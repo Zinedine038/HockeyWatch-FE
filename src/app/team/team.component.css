@@ -1,4 +1,50 @@
-img {
-  display: inline;
-  margin-right: 10px;
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: black;
+}
+
+.conference-title {
+  font-size: 1.5rem;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.division {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.division-title {
+  width: 100%;
+  text-align: center;
+  font-size: 1.2rem;
+  margin: 10px 0;
+  color: black;
+}
+
+.team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100px;
+  margin: 10px;
+  text-align: center;
+  color: black;
+}
+
+.team img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.team img:hover {
+  transform: scale(1.1);
 }

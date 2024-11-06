@@ -1,0 +1,13 @@
+<p>player-list works!</p>
+
+<!-- create list of skaters -->
+<div class="skater" *ngFor="let team of combined">
+    <div class="team">
+        <img [src]="'https://assets.nhle.com/logos/nhl/svg/' + team.shortName + '_light.svg'" width="200" height="200" /><h2>{{team.name}}</h2>
+    </div>
+    <ul class="players">
+        <li *ngFor="let player of team.players">
+          #{{player.number}} - {{player.firstName}} - {{player.role}}
+        </li>
+      </ul>
+</div>

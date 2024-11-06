@@ -14,6 +14,10 @@ export class TeamService {
     return this.httpClient.get(`${environment.apiUrl}`+'team/conferences');
   }
 
+  getTeamsPlain(): Observable<any>{
+    return this.httpClient.get(`${environment.apiUrl}`+'team/plain');
+  }
+
   getTeamInfo(id: number): Observable<any>{
     return this.httpClient.get(`${environment.apiUrl}`+'team/'+id+'/skaters');
   }
