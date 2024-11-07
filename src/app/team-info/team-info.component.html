@@ -7,3 +7,12 @@
 <div class=skater *ngFor="let skater of team.skaters">
   <h4>#{{skater.number}} - {{skater.fullName}} - {{skater.role}}</h4>
 </div>
+
+<div class="chat">
+  <input [(ngModel)]="user" placeholder="Type your name here" />
+  <input [(ngModel)]="message" placeholder="Type your message here" />
+  <button (click)="sendMessage()">Send</button>
+  <div *ngFor="let msg of messages">
+    {{msg}}
+  </div>
+</div>

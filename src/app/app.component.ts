@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { TopbarComponent } from './topbar/topbar.component';
+import { ElementService } from './element.service';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -12,5 +14,19 @@ import { TopbarComponent } from './topbar/topbar.component';
 })
 
 export class AppComponent {
+
+  constructor(public elementService: ElementService, private router: Router) {
+    elementService.renderTopBar = true;
+
+    this.router.events.pipe(
+      filter((event) : event is NavigationEnd => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      elementService.renderTopBar=true;
+    });
+
+  }
+
+  
+
   title = 'Developer Profile';
 }

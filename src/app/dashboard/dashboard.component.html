@@ -1,3 +1,26 @@
 <div class="dashboard">
-    <p>dashboard works!</p>
+    Welcome to HockeyWatch!
+</div>
+
+<!-- if matches show them -->
+<div class="matches" *ngIf="matches">
+    <h2>Upcoming matches</h2>
+    <div class="match" *ngFor="let match of matches">
+        <div class="logos">
+            <img [src]="logoService.getLogoLight(match.homeTeam.shortName)" width="50" height="50" /> VS <img [src]="logoService.getLogoLight(match.awayTeam.shortName)" width="50" height="50" />
+        </div>
+        <h3>{{match.homeTeam.name}} vs {{match.awayTeam.name}}</h3>
+        <p>{{match.date}}</p>
+    </div>
+</div>
+
+<div class="matches" *ngIf="matches">
+    <h2>Recent matches</h2>
+    <div class="match" *ngFor="let match of matches">
+        <div class="logos">
+            <img [src]="logoService.getLogoLight(match.homeTeam.shortName)" width="50" height="50" /> VS <img [src]="logoService.getLogoLight(match.awayTeam.shortName)" width="50" height="50" />
+        </div>
+        <h3>{{match.homeTeam.name}} vs {{match.awayTeam.name}}</h3>
+        <p>{{match.date}}</p>
+    </div>
 </div>

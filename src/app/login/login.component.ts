@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Login } from '../models/login';
 import { AuthenticationService } from '../authentication.service';
@@ -8,7 +8,8 @@ import { AuthenticationService } from '../authentication.service';
   standalone: true,
   imports: [FormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
+  encapsulation: ViewEncapsulation.ShadowDom
 })
 export class LoginComponent {
 

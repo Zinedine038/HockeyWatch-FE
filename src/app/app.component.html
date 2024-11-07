@@ -1,2 +1,3 @@
-<app-topbar></app-topbar>
+<!-- if render top bar is true-->
+<app-topbar *ngIf="elementService.renderTopBar"></app-topbar>
 <router-outlet></router-outlet>
