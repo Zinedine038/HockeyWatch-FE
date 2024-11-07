@@ -4,6 +4,12 @@
 
 .logos{
     display: flex;
-    justify-content: left;
+    justify-content: center;
     margin-top: 50px;
 }
+
+.matches{
+    text-align: center;
+    margin-bottom: 5rem;
+}
+

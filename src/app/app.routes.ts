@@ -12,6 +12,7 @@ import { SplashComponent } from './splash/splash.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PlayerListComponent } from './player-list/player-list.component';
 import { PlayerInfoComponent } from './player-info/player-info.component';
+import { MatchComponent } from './match/match.component';
 
 export const routes: Routes = [
     { path: '', component: SplashComponent},
@@ -25,5 +26,6 @@ export const routes: Routes = [
     { path: 'user', component: AuthenticationComponent},
     { path: 'players', component: PlayerListComponent},
     { path: 'player', component: PlayerInfoComponent},
+    { path: 'match', component: MatchComponent},
     { path: '**', component: PageNotFoundComponent },
 ];
