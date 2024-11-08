@@ -12,7 +12,7 @@ import { Router } from "@angular/router";
 export class AuthenticationService {
 
   registerUrl = "register"
-  loginUrl = "login"
+  loginUrl = "Account/login"
 
   constructor(private http: HttpClient, private router: Router) {
 
@@ -24,9 +24,11 @@ export class AuthenticationService {
 
   public login(user: Login){
     return this.http.post(`${environment.apiUrl}${this.loginUrl}`, user).subscribe((response: any) => {
-      const token = response.accessToken;
+      const token = response.token;
+      const displayName = response.displayName;
       if(token){
         localStorage.setItem('authToken', token);
+        localStorage.setItem('displayname', displayName)
         //redirect to dashboard
         this.router.navigate(['/home']);
       }
