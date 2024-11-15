@@ -13,7 +13,7 @@ export class MatchService {
    }
 
    getAllMatches() : Observable<any> {
-    return this.httpClient.get('https://localhost:7067/Match');
+    return this.httpClient.get('https://localhost:7067/Match/sortedByStatus');
   }
 
   getMatch(id: number) : Observable<any> {

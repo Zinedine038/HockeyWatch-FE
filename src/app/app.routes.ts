@@ -13,6 +13,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PlayerListComponent } from './player-list/player-list.component';
 import { PlayerInfoComponent } from './player-info/player-info.component';
 import { MatchComponent } from './match/match.component';
+import { MatchCasterDashboardComponent } from './match-caster-dashboard/match-caster-dashboard.component';
+import { authCasterGuard } from './auth-caster.guard';
 
 export const routes: Routes = [
     { path: '', component: SplashComponent},
@@ -27,5 +29,6 @@ export const routes: Routes = [
     { path: 'players', component: PlayerListComponent},
     { path: 'player', component: PlayerInfoComponent},
     { path: 'match', component: MatchComponent},
-    { path: '**', component: PageNotFoundComponent },
+    { path: 'match-caster-dashboard', component: MatchCasterDashboardComponent, canActivate: [authCasterGuard] },	
+    { path: '**', component: PageNotFoundComponent }
 ];

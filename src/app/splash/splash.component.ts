@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, } from '@angular/core';
+import { Component, inject, ViewEncapsulation, } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { FormsModule } from '@angular/forms';
 import { Login } from '../models/login';
@@ -14,10 +14,13 @@ import { ElementService } from '../element.service';
   styleUrl: './splash.component.css',
 })
 export class SplashComponent implements OnInit {
-  constructor(private authenticationService: AuthenticationService, private elementService: ElementService) {}
+  constructor(private elementService: ElementService) {}
+  authenticationService = inject(AuthenticationService);
+
   loginDto = new Login();
 
   ngOnInit() {
+    this.authenticationService.getCurrentUser();
     this.elementService.renderTopBar = false;
   }
   

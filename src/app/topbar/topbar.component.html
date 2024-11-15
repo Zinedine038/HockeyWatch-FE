@@ -6,7 +6,7 @@
         <li class="topBarElement"><a href="/players">PLAYERS</a></li>
         <li class="topBarElement"><a href="/games">GAMES</a></li>
         <!-- access localStorage and get displayname -->
-        <li class="topBarElement"><a href="/users">{{displayName}}</a></li>
+        <li class="topBarElement"><a href="/users">{{authService.currentUserSignal()?.username?.toUpperCase() || ''}}</a></li>
         <li class="topBarElement"><a href="/" (click)="logout()">LOGOUT</a></li>
     </ul>
 </div>

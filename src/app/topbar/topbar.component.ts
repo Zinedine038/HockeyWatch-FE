@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { AuthenticationService } from '../authentication.service';
 import { OnInit } from '@angular/core';
 
 @Component({
@@ -8,13 +9,10 @@ import { OnInit } from '@angular/core';
   templateUrl: './topbar.component.html',
   styleUrl: './topbar.component.css'
 })
-export class TopbarComponent implements OnInit {
+export class TopbarComponent {
 
   displayName: string = ""
-
-  ngOnInit(): void {
-    this.displayName = localStorage.getItem('displayname')?.toUpperCase() || '';
-  }
+  authService = inject(AuthenticationService);
 
   logout() {
     localStorage.removeItem('authToken');
