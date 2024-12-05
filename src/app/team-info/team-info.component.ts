@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import {NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 import { TeamService } from "../team.service";
 import { ChatService } from "../chat.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Location } from "@angular/common"
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-team-info',
@@ -13,15 +13,18 @@ import { FormsModule } from '@angular/forms';
     NgIf,
     NgOptimizedImage,
     NgForOf,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   templateUrl: './team-info.component.html',
   styleUrl: './team-info.component.css'
 })
 export class TeamInfoComponent implements OnInit {
 
+
+  message = new FormControl('');
+
   user=''
-  message=''
   messages: string[] = [];
   team:any
   id?:number
@@ -30,9 +33,14 @@ export class TeamInfoComponent implements OnInit {
 
   }
 
-  sendMessage(): void {
-    this.chatService.sendMessage(this.user, this.message);
-    this.message = '';
+  onSubmit(): void {
+    const newMessage = this.message.value;
+    if(!newMessage){
+      console.log('no message');
+      return;
+    }
+    this.chatService.sendMessage(newMessage, this.team.shortName);
+    this.message.setValue('');
   }
 
 
@@ -44,7 +52,10 @@ export class TeamInfoComponent implements OnInit {
     )
 
     this.chatService.newMessage$.subscribe(message => {
-      this.messages.push(message);
+      if(message.team == this.team.shortName)
+      {
+        this.messages.push(message.fullMessage);
+      }
     });
   }
 

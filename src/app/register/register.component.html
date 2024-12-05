@@ -1,19 +1,34 @@
-<p>login-register works!</p>
-
-
-<!-- Path: frontend/src/app/login-register/login-register.component.ts -->
 <body>
-    <h2>Register</h2>
-    <div>
-        <div>Name: 
-            <input [(ngModel)]="registerDto.name"/>
+    <div class="centered">
+        <div class="form-container">
+            <h1>HOCKEYWATCH</h1>
+            <h2>REGISTER</h2>
+            <div>
+                <form [formGroup]="registerFormGroup" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label for="email">NAME</label>
+                        <input id="email" type="email" formControlName="name" />
+                        <div *ngIf="formSubmitted && registerFormGroup.get('name')?.invalid" class="error-message">
+                            {{ getErrorMessage('name') }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">EMAIL</label>
+                        <input id="email" type="email" formControlName="email" />
+                        <div *ngIf="formSubmitted && registerFormGroup.get('email')?.invalid" class="error-message">
+                            {{ getErrorMessage('email') }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">PASSWORD</label>
+                        <input id="password"  type="password" formControlName="password" />
+                        <div *ngIf="formSubmitted && registerFormGroup.get('password')?.invalid" class="error-message">
+                            {{ getErrorMessage('password') }}
+                        </div>
+                    </div>
+                    <button type="submit">REGISTER</button>
+                </form>
+            </div>
         </div>
-        <div>Email: 
-            <input [(ngModel)]="registerDto.email"/>
-        </div>
-        <div>Password: 
-            <input [(ngModel)]="registerDto.password"/>
-        </div>
-        <button (click)="register(registerDto)">Register</button>
     </div>
 </body>

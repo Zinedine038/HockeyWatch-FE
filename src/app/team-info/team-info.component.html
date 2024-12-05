@@ -8,11 +8,14 @@
   <h4>#{{skater.number}} - {{skater.fullName}} - {{skater.role}}</h4>
 </div>
 
-<div class="chat">
-  <input [(ngModel)]="user" placeholder="Type your name here" />
-  <input [(ngModel)]="message" placeholder="Type your message here" />
-  <button (click)="sendMessage()">Send</button>
-  <div *ngFor="let msg of messages">
-    {{msg}}
+<div>
+  <form (ngSubmit)="onSubmit()">
+    <input id="message" [formControl]="message" placeholder="Type your message here" />
+    <button type="submit">Send</button>
+  </form>
+  <div class="chatBox">
+    <div *ngFor="let msg of messages.reverse()">
+      {{msg}}
+    </div>
   </div>
 </div>

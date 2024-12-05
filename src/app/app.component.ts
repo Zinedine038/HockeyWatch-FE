@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive, RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { TopbarComponent } from './topbar/topbar.component';
@@ -8,25 +8,24 @@ import { filter } from 'rxjs';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive, TopbarComponent],
+  imports: [CommonModule, RouterOutlet, TopbarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-  constructor(public elementService: ElementService, private router: Router) {
-    elementService.renderTopBar = true;
+  renderTopBar = true;
+  hiddenTopBarRoutes = ['/','/login', '/register'];
 
-    this.router.events.pipe(
-      filter((event) : event is NavigationEnd => event instanceof NavigationEnd)
-    ).subscribe((event: NavigationEnd) => {
-      elementService.renderTopBar=true;
-    });
+  constructor(public elementService: ElementService, private router: Router){}
 
+  ngOnInit(): void {
+    this.router.events
+      .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => {
+        this.renderTopBar = !this.hiddenTopBarRoutes.includes(event.urlAfterRedirects);
+      });
   }
-
-  
-
   title = 'Developer Profile';
 }

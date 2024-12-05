@@ -15,20 +15,22 @@ import { PlayerInfoComponent } from './player-info/player-info.component';
 import { MatchComponent } from './match/match.component';
 import { MatchCasterDashboardComponent } from './match-caster-dashboard/match-caster-dashboard.component';
 import { authCasterGuard } from './auth-caster.guard';
+import { authGuard } from './auth.guard';
+import { authLoggedInGuard } from './auth-loggedin-guard';
 
 export const routes: Routes = [
-    { path: '', component: SplashComponent},
+    { path: '', component: SplashComponent, canActivate: [authLoggedInGuard] },
     { path: 'home', component: DashboardComponent},
     { path: 'dev-profile', component: DeveloperProfileComponent },
     { path: 'dev-contact', component: MailComponent },
     { path: 'team-list', component: TeamComponent },
     { path: 'team-info', component: TeamInfoComponent },
-    { path: 'register', component: RegisterComponent},
-    { path: 'login', component: LoginComponent},
+    { path: 'register', component: RegisterComponent, canActivate: [authLoggedInGuard]},
+    { path: 'login', component: LoginComponent, canActivate: [authLoggedInGuard]},
     { path: 'user', component: AuthenticationComponent},
     { path: 'players', component: PlayerListComponent},
     { path: 'player', component: PlayerInfoComponent},
-    { path: 'match', component: MatchComponent},
+    { path: 'match', component: MatchComponent, canActivate: [authGuard]},
     { path: 'match-caster-dashboard', component: MatchCasterDashboardComponent, canActivate: [authCasterGuard] },	
     { path: '**', component: PageNotFoundComponent }
 ];

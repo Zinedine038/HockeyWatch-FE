@@ -1,10 +1,8 @@
-import { Component, inject, ViewEncapsulation, } from '@angular/core';
-import { AppComponent } from '../app.component';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Login } from '../models/login';
-import { AuthenticationService } from '../authentication.service';
 import { OnInit } from '@angular/core';
-import { ElementService } from '../element.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-splash',
@@ -14,17 +12,15 @@ import { ElementService } from '../element.service';
   styleUrl: './splash.component.css',
 })
 export class SplashComponent implements OnInit {
-  constructor(private elementService: ElementService) {}
-  authenticationService = inject(AuthenticationService);
+  constructor() {}
+  router = inject(Router);
 
   loginDto = new Login();
 
   ngOnInit() {
-    this.authenticationService.getCurrentUser();
-    this.elementService.renderTopBar = false;
-  }
-  
-  login(loginDto: Login) {
-    this.authenticationService.login(loginDto);
+    //after 2.2 seconds redirect to login
+    setTimeout(() => {
+      this.router.navigate(['/login']);
+    }, 2200);
   }
 }
