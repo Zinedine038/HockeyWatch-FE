@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Location } from "@angular/common"
 import { FormsModule } from '@angular/forms';
 import { MatchService } from "../match.service";
+import { LogoService } from '../logo.service';
+import { inject } from '@angular/core';
 
 @Component({
   selector: 'app-match',
@@ -19,6 +21,7 @@ import { MatchService } from "../match.service";
 })
 export class MatchComponent implements OnInit {
 
+  logoService = inject(LogoService);
   match: any;
 
   constructor(private route: ActivatedRoute, private location: Location, private matchService: MatchService) {
@@ -30,6 +33,7 @@ export class MatchComponent implements OnInit {
       .subscribe(params => {
         return this.loadMatch(params['id']);  
       })
+
   }
 
   async loadMatch(id: number) {

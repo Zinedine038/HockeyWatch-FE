@@ -17,7 +17,7 @@ export class MatchService {
   }
 
   getMatch(id: number) : Observable<any> {
-    return this.httpClient.get('https://localhost:7067/Match/' + id);
+    return this.httpClient.get('https://localhost:7067/Match/' + id  + '/complete');
   }
 
 }

@@ -3,3 +3,45 @@
     justify-content: center;
     align-items: center;
 }
+
+.title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title-text{
+    text-align: center;
+}
+
+.playerContainer{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.home, .away{
+    width: 25%;
+}
+
+
+.player{
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.away{
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-end;  
+    text-align: right; 
+
+    .player{
+        flex-direction: row-reverse; 
+    }
+
+    .player-name {
+        text-align: right;
+    }
+}

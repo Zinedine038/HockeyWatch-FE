@@ -30,7 +30,7 @@ export const routes: Routes = [
     { path: 'user', component: AuthenticationComponent},
     { path: 'players', component: PlayerListComponent},
     { path: 'player', component: PlayerInfoComponent},
-    { path: 'match', component: MatchComponent, canActivate: [authGuard]},
-    { path: 'match-caster-dashboard', component: MatchCasterDashboardComponent, canActivate: [authCasterGuard] },	
+    { path: 'match', component: MatchComponent /*, canActivate: [authGuard]*/},
+    { path: 'match-caster-dashboard', component: MatchCasterDashboardComponent /*,canActivate: [authCasterGuard] */},	
     { path: '**', component: PageNotFoundComponent }
 ];
