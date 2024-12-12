@@ -16,7 +16,7 @@ import { filter } from 'rxjs';
 export class AppComponent implements OnInit {
 
   renderTopBar = true;
-  hiddenTopBarRoutes = ['/','/login', '/register'];
+  hiddenTopBarRoutes = ['/','/login', '/register','/dev-contact','/dev-profile', '/confirm'];
 
   constructor(public elementService: ElementService, private router: Router){}
 
@@ -24,7 +24,9 @@ export class AppComponent implements OnInit {
     this.router.events
       .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
-        this.renderTopBar = !this.hiddenTopBarRoutes.includes(event.urlAfterRedirects);
+        //use event.urlAfterRedirects and filter out query params from it
+        const url = event.urlAfterRedirects.split('?')[0];
+        this.renderTopBar = !this.hiddenTopBarRoutes.includes(url);
       });
   }
   title = 'Developer Profile';

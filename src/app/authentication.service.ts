@@ -26,6 +26,12 @@ export class AuthenticationService {
     return localStorage.getItem('authToken');
   }
 
+  public confirmEmail(token: string){
+    return this.http.get(`${environment.apiUrl}Account/confirm/${token}`).subscribe((response: any) => {
+      return response;
+    });
+  }
+
   getRoles(): string[] {
     const token = localStorage.getItem('authToken');
     if(token){

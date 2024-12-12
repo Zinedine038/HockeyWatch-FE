@@ -17,6 +17,7 @@ import { MatchCasterDashboardComponent } from './match-caster-dashboard/match-ca
 import { authCasterGuard } from './auth-caster.guard';
 import { authGuard } from './auth.guard';
 import { authLoggedInGuard } from './auth-loggedin-guard';
+import { ConfirmEmailComponent } from './confirm-email/confirm-email.component';
 
 export const routes: Routes = [
     { path: '', component: SplashComponent, canActivate: [authLoggedInGuard] },
@@ -30,6 +31,7 @@ export const routes: Routes = [
     { path: 'user', component: AuthenticationComponent},
     { path: 'players', component: PlayerListComponent},
     { path: 'player', component: PlayerInfoComponent},
+    { path: 'confirm', component: ConfirmEmailComponent},
     { path: 'match', component: MatchComponent /*, canActivate: [authGuard]*/},
     { path: 'match-caster-dashboard', component: MatchCasterDashboardComponent /*,canActivate: [authCasterGuard] */},	
     { path: '**', component: PageNotFoundComponent }
