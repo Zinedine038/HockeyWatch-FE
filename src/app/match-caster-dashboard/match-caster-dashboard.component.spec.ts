@@ -8,10 +8,9 @@ describe('MatchCasterDashboardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MatchCasterDashboardComponent]
-    })
-    .compileComponents();
-    
+      imports: [MatchCasterDashboardComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(MatchCasterDashboardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

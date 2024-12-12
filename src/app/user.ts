@@ -1,6 +1,6 @@
 export interface UserInterface {
-    email: string;
-    token: string;
-    username: string;
-    role: string;
+  email: string;
+  token: string;
+  username: string;
+  role: string;
 }

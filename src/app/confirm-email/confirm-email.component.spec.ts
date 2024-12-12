@@ -8,10 +8,9 @@ describe('ConfirmEmailComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ConfirmEmailComponent]
-    })
-    .compileComponents();
-    
+      imports: [ConfirmEmailComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(ConfirmEmailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

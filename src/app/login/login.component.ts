@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { OnInit } from '@angular/core';
 import { AuthenticationService } from '../authentication.service';
 import { ElementService } from '../element.service';
-import { ReactiveFormsModule, FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { ReactiveFormsModule, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
   imports: [FormsModule, ReactiveFormsModule, CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
-  encapsulation: ViewEncapsulation.ShadowDom
+  encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class LoginComponent implements OnInit {
   title = 'Login';
@@ -28,32 +28,29 @@ export class LoginComponent implements OnInit {
 
   loginFormGroup = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required]]
+    password: ['', [Validators.required]],
   });
-
-
 
   ngOnInit() {
     this.elementService.renderTopBar = false;
   }
 
-  onSubmit(){
+  onSubmit() {
     this.formSubmitted = true;
-    if(this.loginFormGroup.invalid){
+    if (this.loginFormGroup.invalid) {
       return;
     }
     this.login();
   }
-  
-  login() {
 
-    const emailControl = this.loginFormGroup.get("email");
-    const passwordControl = this.loginFormGroup.get("password");
+  login() {
+    const emailControl = this.loginFormGroup.get('email');
+    const passwordControl = this.loginFormGroup.get('password');
     if (emailControl) {
-      this.loginDto.email = emailControl.value || "";
+      this.loginDto.email = emailControl.value || '';
     }
-    if(passwordControl){
-      this.loginDto.password = passwordControl.value || "";
+    if (passwordControl) {
+      this.loginDto.password = passwordControl.value || '';
     }
 
     this.authenticationService.login(this.loginDto);
@@ -65,16 +62,16 @@ export class LoginComponent implements OnInit {
 
   getErrorMessage(controlName: string) {
     const control = this.loginFormGroup.get(controlName);
-    if(control?.hasError('required')){
-      return `${controlName.charAt(0).toUpperCase()}${controlName.slice(1)} is required`;
+    if (control?.hasError('required')) {
+      return `${controlName.charAt(0).toUpperCase()}${controlName.slice(
+        1,
+      )} is required`;
     }
 
-    if(controlName === 'email' && control?.hasError('email')){
+    if (controlName === 'email' && control?.hasError('email')) {
       return 'You must enter a valid email address';
     }
 
     return '';
   }
-
-
 }

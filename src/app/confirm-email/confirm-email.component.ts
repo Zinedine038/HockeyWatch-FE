@@ -7,26 +7,22 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './confirm-email.component.html',
-  styleUrl: './confirm-email.component.css'
+  styleUrl: './confirm-email.component.css',
 })
 export class ConfirmEmailComponent implements OnInit {
-
   authService = inject(AuthenticationService);
+
   tokenNotFound = false;
   wait = false;
   apiError = false;
   userConfirmed = false;
-  //get query param from url 'token'
 
-  
-  ngOnInit(): void {    
+  ngOnInit(): void {
     const token = window.location.search.split('=')[1];
-    if(token){
+    if (token) {
       this.authService.confirmEmail(token);
-    }
-    else{
+    } else {
       this.tokenNotFound = true;
     }
   }
-
 }

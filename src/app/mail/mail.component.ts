@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { EmailService } from '../email.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -6,25 +6,24 @@ import { HttpClientModule } from '@angular/common/http';
 @Component({
   selector: 'app-mail',
   standalone: true,
-  imports: [FormsModule,HttpClientModule],
+  imports: [FormsModule, HttpClientModule],
   templateUrl: './mail.component.html',
-  styleUrl: './mail.component.css'
+  styleUrl: './mail.component.css',
 })
 export class MailComponent {
-
-  constructor(private email: EmailService){}
+  emailService = inject(EmailService);
 
   formData = {
     name: '',
     surname: '',
     email: '',
-    telephone: 0
+    telephone: 0,
   };
 
   onSubmit() {
     console.log(this.formData);
-    console.log("EH")
-    this.email.sendEmail(this.formData);
+    console.log('EH');
+    this.emailService.sendEmail(this.formData);
     // Process your form data here
   }
 }

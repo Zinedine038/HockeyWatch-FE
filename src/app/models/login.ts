@@ -1,6 +1,6 @@
 export class Login {
-  email = ''
-  password = ''
-  twoFactorCode = "string"
-  twoFactorRecoveryCode = "string"
+  email = '';
+  password = '';
+  twoFactorCode = 'string';
+  twoFactorRecoveryCode = 'string';
 }

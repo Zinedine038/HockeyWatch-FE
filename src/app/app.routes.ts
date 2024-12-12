@@ -3,11 +3,10 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 
 import { Routes } from '@angular/router';
 import { MailComponent } from './mail/mail.component';
-import { TeamComponent } from "./team/team.component";
-import { TeamInfoComponent } from "./team-info/team-info.component";
+import { TeamComponent } from './team/team.component';
+import { TeamInfoComponent } from './team-info/team-info.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
-import { AuthenticationComponent } from './authentication/authentication.component';
 import { SplashComponent } from './splash/splash.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PlayerListComponent } from './player-list/player-list.component';
@@ -20,19 +19,30 @@ import { authLoggedInGuard } from './auth-loggedin-guard';
 import { ConfirmEmailComponent } from './confirm-email/confirm-email.component';
 
 export const routes: Routes = [
-    { path: '', component: SplashComponent, canActivate: [authLoggedInGuard] },
-    { path: 'home', component: DashboardComponent},
-    { path: 'dev-profile', component: DeveloperProfileComponent },
-    { path: 'dev-contact', component: MailComponent },
-    { path: 'team-list', component: TeamComponent },
-    { path: 'team-info', component: TeamInfoComponent },
-    { path: 'register', component: RegisterComponent, canActivate: [authLoggedInGuard]},
-    { path: 'login', component: LoginComponent, canActivate: [authLoggedInGuard]},
-    { path: 'user', component: AuthenticationComponent},
-    { path: 'players', component: PlayerListComponent},
-    { path: 'player', component: PlayerInfoComponent},
-    { path: 'confirm', component: ConfirmEmailComponent},
-    { path: 'match', component: MatchComponent /*, canActivate: [authGuard]*/},
-    { path: 'match-caster-dashboard', component: MatchCasterDashboardComponent /*,canActivate: [authCasterGuard] */},	
-    { path: '**', component: PageNotFoundComponent }
+  { path: '', component: SplashComponent, canActivate: [authLoggedInGuard] },
+  { path: 'home', component: DashboardComponent },
+  { path: 'dev-profile', component: DeveloperProfileComponent },
+  { path: 'dev-contact', component: MailComponent },
+  { path: 'team-list', component: TeamComponent },
+  { path: 'team-info', component: TeamInfoComponent },
+  {
+    path: 'register',
+    component: RegisterComponent,
+    canActivate: [authLoggedInGuard],
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    canActivate: [authLoggedInGuard],
+  },
+  { path: 'players', component: PlayerListComponent },
+  { path: 'player', component: PlayerInfoComponent },
+  { path: 'confirm', component: ConfirmEmailComponent },
+  { path: 'match', component: MatchComponent /*, canActivate: [authGuard]*/ },
+  {
+    path: 'match-caster-dashboard',
+    component:
+      MatchCasterDashboardComponent /*,canActivate: [authCasterGuard] */,
+  },
+  { path: '**', component: PageNotFoundComponent },
 ];

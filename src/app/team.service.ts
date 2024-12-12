@@ -1,24 +1,25 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import {Observable} from "rxjs";
-import { environment } from "../environments/environment";
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from '../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TeamService {
+  constructor(private httpClient: HttpClient) {}
 
-  constructor(private httpClient: HttpClient) { }
-
-  getTeams(): Observable<any>{
-    return this.httpClient.get(`${environment.apiUrl}`+'team/conferences');
+  getTeams(): Observable<any> {
+    return this.httpClient.get(`${environment.apiUrl}` + 'team/conferences');
   }
 
-  getTeamsPlain(): Observable<any>{
-    return this.httpClient.get(`${environment.apiUrl}`+'team/plain');
+  getTeamsPlain(): Observable<any> {
+    return this.httpClient.get(`${environment.apiUrl}` + 'team/plain');
   }
 
-  getTeamInfo(id: number): Observable<any>{
-    return this.httpClient.get(`${environment.apiUrl}`+'team/'+id+'/skaters');
+  getTeamInfo(id: number): Observable<any> {
+    return this.httpClient.get(
+      `${environment.apiUrl}` + 'team/' + id + '/skaters',
+    );
   }
 }

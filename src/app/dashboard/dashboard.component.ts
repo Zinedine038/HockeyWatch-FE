@@ -11,38 +11,34 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [TopbarComponent, CommonModule],
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css'
+  styleUrl: './dashboard.component.css',
 })
 export class DashboardComponent implements OnInit {
+  matchService = inject(MatchService);
+  logoService = inject(LogoService);
+  router = inject(Router);
 
   sortedMatches: any[][] = [[], [], []];
 
-
-  constructor(private matchService: MatchService, public logoService: LogoService, private router: Router) {
-
-  }
-
   ngOnInit(): void {
     this.matchService.getAllMatches().subscribe({
-      next: matches => {
-        this.sortedMatches=matches;
+      next: (matches) => {
+        this.sortedMatches = matches;
       },
-      error: error => console.log(error)
+      error: (error) => console.log(error),
     });
   }
 
   formatTime(time: string) {
     const date = new Date(time);
-    return date.toLocaleDateString('en-GB') + ' ' + date.toLocaleTimeString('en-GB').slice(0, -3);
-  }
-
-  viewMatch(matchId: number){
-    this.router.navigate(
-      ['/match'],
-      { queryParams: {id: matchId} }
+    return (
+      date.toLocaleDateString('en-GB') +
+      ' ' +
+      date.toLocaleTimeString('en-GB').slice(0, -3)
     );
   }
 
-
-
+  viewMatch(matchId: number) {
+    this.router.navigate(['/match'], { queryParams: { id: matchId } });
+  }
 }

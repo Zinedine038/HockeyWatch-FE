@@ -1,41 +1,34 @@
 import { Component, inject, OnInit } from '@angular/core';
-import {NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
-import { TeamService } from "../team.service";
-import { ChatService } from "../chat.service";
-import { ActivatedRoute, Router } from "@angular/router";
-import { Location } from "@angular/common"
+import { NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
+import { TeamService } from '../team.service';
+import { ChatService } from '../chat.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-team-info',
   standalone: true,
-  imports: [
-    NgIf,
-    NgOptimizedImage,
-    NgForOf,
-    FormsModule,
-    ReactiveFormsModule
-  ],
+  imports: [NgIf, NgOptimizedImage, NgForOf, FormsModule, ReactiveFormsModule],
   templateUrl: './team-info.component.html',
-  styleUrl: './team-info.component.css'
+  styleUrl: './team-info.component.css',
 })
 export class TeamInfoComponent implements OnInit {
-
+  teamService = inject(TeamService);
+  chatService = inject(ChatService);
+  route = inject(ActivatedRoute);
+  location = inject(Location);
 
   message = new FormControl('');
 
-  user=''
+  user = '';
   messages: string[] = [];
-  team:any
-  id?:number
-
-  constructor(private teamService: TeamService, private route: ActivatedRoute, private location: Location, private chatService: ChatService) {
-
-  }
+  team: any;
+  id?: number;
 
   onSubmit(): void {
     const newMessage = this.message.value;
-    if(!newMessage){
+    if (!newMessage) {
       console.log('no message');
       return;
     }
@@ -43,32 +36,26 @@ export class TeamInfoComponent implements OnInit {
     this.message.setValue('');
   }
 
+  ngOnInit() {
+    this.route.queryParams.subscribe((params) => {
+      return this.loadTeam(params['id']);
+    });
 
-  ngOnInit(){
-    this.route.queryParams
-      .subscribe(params => {
-        return this.loadTeam(params['id']);
-      }
-    )
-
-    this.chatService.newMessage$.subscribe(message => {
-      if(message.team == this.team.shortName)
-      {
+    this.chatService.newMessage$.subscribe((message) => {
+      if (message.team == this.team.shortName) {
         this.messages.push(message.fullMessage);
       }
     });
   }
 
-
-  async loadTeam(id:number) {
+  async loadTeam(id: number) {
     await this.teamService.getTeamInfo(id).subscribe({
-        next: team => this.team=team,
-        error: error => console.log(error)
-      }
-    );
+      next: (team) => (this.team = team),
+      error: (error) => console.log(error),
+    });
   }
 
-  goBack(){
+  goBack() {
     this.location.back();
   }
 }
