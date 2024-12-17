@@ -1,4 +1,4 @@
-.center{
+.center {
   max-width: fit-content;
   margin-left: auto;
   margin-right: auto;
@@ -6,11 +6,11 @@
   align-content: center;
 }
 
-.skater{
+.skater {
   text-align: center;
 }
 
-.chatBox{
-  overflow-y: scroll; 
-  height:400px;
+.chatBox {
+  overflow-y: scroll;
+  height: 400px;
 }

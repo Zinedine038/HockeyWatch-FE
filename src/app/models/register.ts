@@ -1,5 +1,5 @@
 export class Register {
-  name = ''
-  email = ''
-  password = ''
+  name = '';
+  email = '';
+  password = '';
 }

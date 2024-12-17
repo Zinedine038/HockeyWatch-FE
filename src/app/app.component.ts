@@ -11,7 +11,6 @@ import { filter } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-
 export class AppComponent implements OnInit {
 
   router = inject(Router);
@@ -22,7 +21,11 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.router.events
-      .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
+      .pipe(
+        filter(
+          (event): event is NavigationEnd => event instanceof NavigationEnd,
+        ),
+      )
       .subscribe((event: NavigationEnd) => {
         const currentPath = event.urlAfterRedirects.split('?')[0];
         this.renderTopBar = !this.hiddenTopBarRoutes.includes(currentPath);

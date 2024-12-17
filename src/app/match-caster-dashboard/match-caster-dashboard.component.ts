@@ -12,17 +12,14 @@ import { LiveMatchService } from '../live-match.service';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './match-caster-dashboard.component.html',
-  styleUrl: './match-caster-dashboard.component.css'
+  styleUrl: './match-caster-dashboard.component.css',
 })
 export class MatchCasterDashboardComponent implements OnInit {
-
   logoService = inject(LogoService);
   liveMatchService = inject(LiveMatchService);
+  matchService = inject(MatchService);
+  route = inject(ActivatedRoute);
   match: any;
-
-  constructor(private route: ActivatedRoute, private matchService: MatchService) {
-
-  }
 
   ngOnInit() {
     this.route.queryParams
@@ -39,8 +36,8 @@ export class MatchCasterDashboardComponent implements OnInit {
 
   async loadMatch(id: number) {
     await this.matchService.getMatch(id).subscribe({
-      next: match => this.match = match,
-      error: error => console.log(error)
+      next: (match) => (this.match = match),
+      error: (error) => console.log(error),
     });
   }
 

@@ -1,52 +1,80 @@
 <div *ngIf="match">
-    <div class="match">
-        <div class="title">
-            <img src="{{logoService.getLogoLight(match.homeTeam.shortName)}}" width="100"/> vs <img src="{{logoService.getLogoLight(match.awayTeam.shortName)}}" width="100"/>
-        </div>
-        <div class="title-text"> 
-            {{match.homeTeam.name}} vs {{match.awayTeam.name}}
-        </div>
+  <div class="match">
+    <div class="title">
+      <img
+        src="{{ logoService.getLogoLight(match.homeTeam.shortName) }}"
+        width="100"
+      />
+      vs
+      <img
+        src="{{ logoService.getLogoLight(match.awayTeam.shortName) }}"
+        width="100"
+      />
     </div>
-    <div class="playerContainer">
-        <div class="home">
-            <ul>
-                <li *ngFor="let player of match.homeTeam.skaters">
-                    <div class="player">
-                        <img src="{{logoService.getLogoLight(match.homeTeam.shortName)}}" width="50"/>
-                        <div class="player-name">{{player.firstName}} {{player.lastName}}</div>
-                    </div>
-                </li>
-            </ul>
-            Goalie:
-            <ul>
-                <li *ngFor="let player of match.homeTeam.goalies">
-                    <div class="player">
-                        <img src="{{logoService.getLogoLight(match.homeTeam.shortName)}}" width="50"/>
-                        <div class="player-name">{{player.firstName}} {{player.lastName}}</div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div class="away">
-            <ul>
-                <li *ngFor="let player of match.awayTeam.skaters">
-                    <div class="player">
-                        <img src="{{logoService.getLogoLight(match.awayTeam.shortName)}}" width="50"/>
-                        <div class="player-name">{{player.firstName}} {{player.lastName}}</div>
-                    </div>
-                </li>
-            </ul>
-            Goalie:
-            <ul>
-                <li *ngFor="let player of match.awayTeam.goalies">
-                    <div class="player">
-                        <img src="{{logoService.getLogoLight(match.awayTeam.shortName)}}" width="50"/>
-                        <div class="player-name">{{player.firstName}} {{player.lastName}}</div>
-                    </div>
-                </li>
-            </ul>
-        </div>
+    <div class="title-text">
+      {{ match.homeTeam.name }} vs {{ match.awayTeam.name }}
     </div>
+  </div>
+  <div class="playerContainer">
+    <div class="home">
+      <ul>
+        <li *ngFor="let player of match.homeTeam.skaters">
+          <div class="player">
+            <img
+              src="{{ logoService.getLogoLight(match.homeTeam.shortName) }}"
+              width="50"
+            />
+            <div class="player-name">
+              {{ player.firstName }} {{ player.lastName }}
+            </div>
+          </div>
+        </li>
+      </ul>
+      Goalie:
+      <ul>
+        <li *ngFor="let player of match.homeTeam.goalies">
+          <div class="player">
+            <img
+              src="{{ logoService.getLogoLight(match.homeTeam.shortName) }}"
+              width="50"
+            />
+            <div class="player-name">
+              {{ player.firstName }} {{ player.lastName }}
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="away">
+      <ul>
+        <li *ngFor="let player of match.awayTeam.skaters">
+          <div class="player">
+            <img
+              src="{{ logoService.getLogoLight(match.awayTeam.shortName) }}"
+              width="50"
+            />
+            <div class="player-name">
+              {{ player.firstName }} {{ player.lastName }}
+            </div>
+          </div>
+        </li>
+      </ul>
+      Goalie:
+      <ul>
+        <li *ngFor="let player of match.awayTeam.goalies">
+          <div class="player">
+            <img
+              src="{{ logoService.getLogoLight(match.awayTeam.shortName) }}"
+              width="50"
+            />
+            <div class="player-name">
+              {{ player.firstName }} {{ player.lastName }}
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>
 <div *ngIf="caster">
     <button (click)="goToMatchCasterDashboard()">Manage Match</button>

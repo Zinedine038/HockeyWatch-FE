@@ -1,43 +1,33 @@
-import { Component } from '@angular/core';
-import { TeamService } from "../team.service";
-import {NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
-import { Router } from "@angular/router";
+import { Component, inject } from '@angular/core';
+import { TeamService } from '../team.service';
+import { NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-team',
   standalone: true,
-  imports: [
-    NgIf,
-    NgOptimizedImage,
-    NgForOf
-  ],
+  imports: [NgIf, NgOptimizedImage, NgForOf],
   templateUrl: './team.component.html',
-  styleUrl: './team.component.css'
+  styleUrl: './team.component.css',
 })
 export class TeamComponent {
+  teamService = inject(TeamService);
+  router = inject(Router);
 
+  teams: any;
 
-  teams:any;
-  constructor(private teamService: TeamService, private router: Router) {
-  }
-
-  ngOnInit(){
+  ngOnInit() {
     this.loadTeams();
   }
 
   async loadTeams() {
     await this.teamService.getTeams().subscribe({
-        next: teams => this.teams=teams,
-        error: error => console.log(error)
-      }
-    );
+      next: (teams) => (this.teams = teams),
+      error: (error) => console.log(error),
+    });
   }
 
-  viewTeam(teamId: number){
-    this.router.navigate(
-      ['/team-info'],
-      { queryParams: {id: teamId} }
-    );
+  viewTeam(teamId: number) {
+    this.router.navigate(['/team-info'], { queryParams: { id: teamId } });
   }
-
 }

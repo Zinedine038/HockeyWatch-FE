@@ -1,46 +1,82 @@
-<div class="dashboard">
-    Welcome to HockeyWatch!
-</div>
+<div class="dashboard">Welcome to HockeyWatch!</div>
 
 <!-- if matches show them -->
 <div class="matches" *ngIf="sortedMatches[0][0]">
-    <h2>Upcoming matches</h2>
-    <div class="match" *ngFor="let match of sortedMatches[0]">
-        <div (click)="viewMatch(match.id)" class="logos">
-            <img [src]="logoService.getLogoLight(match.homeTeam.shortName)" width="50" height="50" /> VS <img [src]="logoService.getLogoLight(match.awayTeam.shortName)" width="50" height="50" />
-        </div>
-        <h3>{{match.homeTeam.name}} vs {{match.awayTeam.name}}</h3>
-        <p>{{formatTime(match.date)}}</p>
+  <h2>Upcoming matches</h2>
+  <div class="match" *ngFor="let match of sortedMatches[0]">
+    <div (click)="viewMatch(match.id)" class="logos">
+      <img
+        [src]="logoService.getLogoLight(match.homeTeam.shortName)"
+        width="50"
+        height="50"
+      />
+      VS
+      <img
+        [src]="logoService.getLogoLight(match.awayTeam.shortName)"
+        width="50"
+        height="50"
+      />
     </div>
+    <h3>{{ match.homeTeam.name }} vs {{ match.awayTeam.name }}</h3>
+    <p>{{ formatTime(match.date) }}</p>
+  </div>
 </div>
 <div class="matches" *ngIf="!sortedMatches[0][0]">
-    <h2>No past matches</h2>
+  <h2>No past matches</h2>
 </div>
 
 <div class="matches" *ngIf="sortedMatches[1][0]">
-    <h2>Live matches</h2>
-    <div (click)="viewMatch(match.id)" class="match" *ngFor="let match of sortedMatches[1]">
-        <div class="logos">
-            <img [src]="logoService.getLogoLight(match.homeTeam.shortName)" width="50" height="50" /> VS <img [src]="logoService.getLogoLight(match.awayTeam.shortName)" width="50" height="50" />
-        </div>
-        <h3>{{match.homeTeam.name}} vs {{match.awayTeam.name}}</h3>
-        <p>{{formatTime(match.date)}}</p>
+  <h2>Live matches</h2>
+  <div
+    (click)="viewMatch(match.id)"
+    class="match"
+    *ngFor="let match of sortedMatches[1]"
+  >
+    <div class="logos">
+      <img
+        [src]="logoService.getLogoLight(match.homeTeam.shortName)"
+        width="50"
+        height="50"
+      />
+      VS
+      <img
+        [src]="logoService.getLogoLight(match.awayTeam.shortName)"
+        width="50"
+        height="50"
+      />
     </div>
+    <h3>{{ match.homeTeam.name }} vs {{ match.awayTeam.name }}</h3>
+    <p>{{ formatTime(match.date) }}</p>
+  </div>
 </div>
 <div class="matches" *ngIf="!sortedMatches[1][0]">
-    <h2>No live matches</h2>
+  <h2>No live matches</h2>
 </div>
 
 <div class="matches" *ngIf="sortedMatches[2][0]">
-    <h2>Recent matches</h2>
-    <div (click)="viewMatch(match.id)" class="match" *ngFor="let match of sortedMatches[2]">
-        <div class="logos">
-            <img [src]="logoService.getLogoLight(match.homeTeam.shortName)" width="50" height="50" /> VS <img [src]="logoService.getLogoLight(match.awayTeam.shortName)" width="50" height="50" />
-        </div>
-        <h3>{{match.homeTeam.name}} vs {{match.awayTeam.name}}</h3>
-        <p>{{match.date}}</p>
+  <h2>Recent matches</h2>
+  <div
+    (click)="viewMatch(match.id)"
+    class="match"
+    *ngFor="let match of sortedMatches[2]"
+  >
+    <div class="logos">
+      <img
+        [src]="logoService.getLogoLight(match.homeTeam.shortName)"
+        width="50"
+        height="50"
+      />
+      VS
+      <img
+        [src]="logoService.getLogoLight(match.awayTeam.shortName)"
+        width="50"
+        height="50"
+      />
     </div>
+    <h3>{{ match.homeTeam.name }} vs {{ match.awayTeam.name }}</h3>
+    <p>{{ match.date }}</p>
+  </div>
 </div>
 <div class="matches" *ngIf="!sortedMatches[2][0]">
-    <h2>No recent matches</h2>
+  <h2>No recent matches</h2>
 </div>

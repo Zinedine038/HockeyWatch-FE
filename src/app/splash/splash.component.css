@@ -1,114 +1,113 @@
 /* splash-screen.component.css */
 .splash-screen {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
-    background-color: #f0f0f0;
-    position: relative;
-    overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: #f0f0f0;
+  position: relative;
+  overflow: hidden;
 }
 
 form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
-input{
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: black;
-    color: white;
-    display: none;
+input {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: black;
+  color: white;
+  display: none;
 }
 
-.form-container{
-    align-items: center;
-    justify-content: center;
-    width: 50%;
-    display: hidden;
+.form-container {
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  display: hidden;
 }
 
 .content {
-    text-align: center;
+  text-align: center;
 }
 
 .splash-image {
-    width: 150px; /* Adjust size as needed */
-    height: auto;
-    margin-bottom: 20px;
-    animation: fadeInMove 0.75s forwards;
+  width: 150px; /* Adjust size as needed */
+  height: auto;
+  margin-bottom: 20px;
+  animation: fadeInMove 0.75s forwards;
 }
 
-.centered{
-    display:block;
-    align-content: center;
+.centered {
+  display: block;
+  align-content: center;
 }
 
-.puck{
-    position: absolute;
-    bottom:43%;
-    left: 52%;
-    width: 10px;
-    /* wait 0.75 seconds for animation */
-    animation: puckShot 3s forwards 0.75s;
-    overflow-x: hidden;
-    overflow-y: hidden;
+.puck {
+  position: absolute;
+  bottom: 43%;
+  left: 52%;
+  width: 10px;
+  /* wait 0.75 seconds for animation */
+  animation: puckShot 3s forwards 0.75s;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 /* Responsive adjustments */
 @media (max-width: 600px) {
-    .splash-image {
-        width: 80px;
-    }
+  .splash-image {
+    width: 80px;
+  }
 
-    .splash-text {
-        font-size: 20px;
-    }
-    
-    .puck{
-        width: 5px;
-        bottom: 47%;
-    }
+  .splash-text {
+    font-size: 20px;
+  }
+
+  .puck {
+    width: 5px;
+    bottom: 47%;
+  }
 }
 
 @keyframes puckShot {
-    0% {
-        scale: 1;
-        transform: translateY(0%);
-    }
-    100% {
-        scale: 500;
-        transform: translateY(-23%)
-    }
-    
+  0% {
+    scale: 1;
+    transform: translateY(0%);
+  }
+  100% {
+    scale: 500;
+    transform: translateY(-23%);
+  }
 }
 
 @keyframes fadeInMove {
-    from {
-        opacity: 0;
-        transform: translateX(400%);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0%);
-    }
+  from {
+    opacity: 0;
+    transform: translateX(400%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0%);
+  }
 }
 
 @keyframes disappearAnimation {
-    0% {
-      opacity: 1;
-      transform: scale(1);
-    }
-    99% {
-        opacity: 1;
-        transform: scale(1);
-    }
-    100% {
-      opacity: 0;
-      transform: scale(0);
-    }
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  99% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
 }

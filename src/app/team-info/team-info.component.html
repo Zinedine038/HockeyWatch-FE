@@ -1,21 +1,31 @@
 <p (click)="goBack()"><</p>
-<div class=center *ngIf="team">
-  <img [src]="'https://assets.nhle.com/logos/nhl/svg/' + team.shortName + '_light.svg'" width="200" height="200" />
-  <h1>{{team.name}} - {{team.shortName}}</h1>
-  <h2>{{team.arena}}</h2>
+<div class="center" *ngIf="team">
+  <img
+    [src]="
+      'https://assets.nhle.com/logos/nhl/svg/' + team.shortName + '_light.svg'
+    "
+    width="200"
+    height="200"
+  />
+  <h1>{{ team.name }} - {{ team.shortName }}</h1>
+  <h2>{{ team.arena }}</h2>
 </div>
-<div class=skater *ngFor="let skater of team.skaters">
-  <h4>#{{skater.number}} - {{skater.fullName}} - {{skater.role}}</h4>
+<div class="skater" *ngFor="let skater of team.skaters">
+  <h4>#{{ skater.number }} - {{ skater.fullName }} - {{ skater.role }}</h4>
 </div>
 
 <div>
   <form (ngSubmit)="onSubmit()">
-    <input id="message" [formControl]="message" placeholder="Type your message here" />
+    <input
+      id="message"
+      [formControl]="message"
+      placeholder="Type your message here"
+    />
     <button type="submit">Send</button>
   </form>
   <div class="chatBox" id="chatBox">
     <div *ngFor="let msg of messages.reverse()">
-      {{msg}}
+      {{ msg }}
     </div>
   </div>
 </div>

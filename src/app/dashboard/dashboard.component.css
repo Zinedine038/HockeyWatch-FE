@@ -1,15 +1,14 @@
-.dashboard{
-    background-color: white;
+.dashboard {
+  background-color: white;
 }
 
-.logos{
-    display: flex;
-    justify-content: center;
-    margin-top: 50px;
+.logos {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
 }
 
-.matches{
-    text-align: center;
-    margin-bottom: 5rem;
+.matches {
+  text-align: center;
+  margin-bottom: 5rem;
 }
-

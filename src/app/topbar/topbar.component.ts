@@ -7,11 +7,10 @@ import { OnInit } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './topbar.component.html',
-  styleUrl: './topbar.component.css'
+  styleUrl: './topbar.component.css',
 })
 export class TopbarComponent {
-
-  displayName: string = ""
+  displayName: string = '';
   authService = inject(AuthenticationService);
 
   logout() {
