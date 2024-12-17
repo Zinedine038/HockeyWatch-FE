@@ -4,8 +4,7 @@ import { Login } from '../models/login';
 import { CommonModule } from '@angular/common';
 import { OnInit } from '@angular/core';
 import { AuthenticationService } from '../authentication.service';
-import { ElementService } from '../element.service';
-import { ReactiveFormsModule, FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { ReactiveFormsModule, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
@@ -21,7 +20,6 @@ export class LoginComponent implements OnInit {
   router = inject(Router);
   formBuilder = inject(FormBuilder);
   authenticationService = inject(AuthenticationService);
-  elementService = inject(ElementService);
 
   loginDto = new Login();
   formSubmitted = false;
@@ -34,7 +32,7 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit() {
-    this.elementService.renderTopBar = false;
+    this.authenticationService.resetResponseMsg();
   }
 
   onSubmit(){
@@ -56,7 +54,8 @@ export class LoginComponent implements OnInit {
       this.loginDto.password = passwordControl.value || "";
     }
 
-    this.authenticationService.login(this.loginDto);
+    const response = this.authenticationService.login(this.loginDto);
+    console.log(response);
   }
 
   goToRegister() {

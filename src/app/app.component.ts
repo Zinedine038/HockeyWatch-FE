@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterLinkActive, RouterOutlet, Router, NavigationEnd } from '@angular/router';
+import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { TopbarComponent } from './topbar/topbar.component';
-import { ElementService } from './element.service';
 import { filter } from 'rxjs';
 
 @Component({
@@ -15,16 +14,18 @@ import { filter } from 'rxjs';
 
 export class AppComponent implements OnInit {
 
+  router = inject(Router);
   renderTopBar = true;
-  hiddenTopBarRoutes = ['/','/login', '/register'];
+  hiddenTopBarRoutes = ['/','/login', '/register', '/confirm', '/post-registration'];
 
-  constructor(public elementService: ElementService, private router: Router){}
+  constructor(){}
 
   ngOnInit(): void {
     this.router.events
       .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
-        this.renderTopBar = !this.hiddenTopBarRoutes.includes(event.urlAfterRedirects);
+        const currentPath = event.urlAfterRedirects.split('?')[0];
+        this.renderTopBar = !this.hiddenTopBarRoutes.includes(currentPath);
       });
   }
   title = 'Developer Profile';

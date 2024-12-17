@@ -15,6 +15,8 @@ export class AuthenticationService {
 
   registerUrl = "Account/register"
   loginUrl = "Account/login"
+  confirmUrl = "Account/confirm"
+  responseMsg = '';
 
   currentUserSignal = signal<UserInterface | undefined | null>(undefined);
 
@@ -33,6 +35,18 @@ export class AuthenticationService {
       return decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
     }
     return [];
+  }
+
+  confirm(guid: string) {
+    this.resetResponseMsg();
+    return this.http.get(`${environment.apiUrl}${this.confirmUrl}/${guid}`).pipe(
+      catchError((error) => {
+        this.responseMsg = error.error.message;
+        return throwError(error);
+      })
+    ).subscribe((response: any) => {
+      
+    });
   }
 
   isAuthenticated(): boolean {
@@ -54,8 +68,26 @@ export class AuthenticationService {
 
 
   public register(user: Register){
+    this.resetResponseMsg();
     return this.http.post(`${environment.apiUrl}${this.registerUrl}`, user).pipe(
       catchError((error) => {
+        this.responseMsg = error.error.message;
+        return throwError(error);
+      })
+    ).subscribe((response: any) => {
+        if(response.message === 'User created')
+        {
+          this.router.navigate(['/post-registration']);
+        }
+    });
+  };
+  
+
+  public login(user: Login){
+    this.resetResponseMsg();
+    return this.http.post(`${environment.apiUrl}${this.loginUrl}`, user).pipe(
+      catchError((error) => {
+        this.responseMsg = error.error.message;
         return throwError(error);
       })
     ).subscribe((response: any) => {
@@ -79,29 +111,7 @@ export class AuthenticationService {
     });
   }
 
-  public login(user: Login){
-    return this.http.post(`${environment.apiUrl}${this.loginUrl}`, user).pipe(
-      catchError((error) => {
-        return throwError(error);
-      })
-    ).subscribe((response: any) => {
-      const token = response.token;
-      const displayName = response.displayName;
-      const email = response.userName;
-      const decoded: any = jwtDecode(token);
-      const role = decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
-      if(token){
-        let currUser: UserInterface = {
-          email: email,
-          token: token,
-          username: displayName,
-          role: role
-        }
-        this.currentUserSignal.set(currUser);
-        console.log(this.currentUserSignal())
-        localStorage.setItem('authToken', token);
-        this.router.navigate(['/home']);
-      }
-    });
+  public resetResponseMsg(){
+    this.responseMsg = '';
   }
 }

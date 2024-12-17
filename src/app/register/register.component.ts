@@ -1,11 +1,9 @@
-import { Component, inject, ViewEncapsulation } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Register } from '../models/register';
 import { OnInit } from '@angular/core';
 import { AuthenticationService } from '../authentication.service';
-import { ElementService } from '../element.service';
-import { ReactiveFormsModule, FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ReactiveFormsModule, Validators, FormBuilder } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -31,8 +29,10 @@ export class RegisterComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    
+    this.authenticationService.resetResponseMsg();
   }
+
+
 
   onSubmit() {
     this.formSubmitted = true;

@@ -13,7 +13,7 @@
     <input id="message" [formControl]="message" placeholder="Type your message here" />
     <button type="submit">Send</button>
   </form>
-  <div class="chatBox">
+  <div class="chatBox" id="chatBox">
     <div *ngFor="let msg of messages.reverse()">
       {{msg}}
     </div>

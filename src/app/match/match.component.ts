@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { MatchService } from "../match.service";
 import { LogoService } from '../logo.service';
 import { inject } from '@angular/core';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-match',
@@ -22,13 +23,19 @@ import { inject } from '@angular/core';
 export class MatchComponent implements OnInit {
 
   logoService = inject(LogoService);
+  authenticationService = inject(AuthenticationService);
+  router = inject(Router);
   match: any;
+  caster = false;
 
   constructor(private route: ActivatedRoute, private location: Location, private matchService: MatchService) {
 
   }
 
   ngOnInit() {
+    if(this.authenticationService.getRoles().includes('Caster')){
+      this.caster = true;
+    }
     this.route.queryParams
       .subscribe(params => {
         return this.loadMatch(params['id']);  
@@ -41,6 +48,12 @@ export class MatchComponent implements OnInit {
       next: match => this.match = match,
       error: error => console.log(error)
     });
+  }
+
+  goToMatchCasterDashboard() {
+    this.router.navigate(['/match-caster-dashboard'], {
+      queryParams: { id: this.match.id }
+    });  
   }
 
 }

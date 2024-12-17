@@ -6,7 +6,8 @@
       <div *ngFor="let team of division.teams" class="team">
         <img (click)="viewTeam(team.id)" 
              [src]="'https://assets.nhle.com/logos/nhl/svg/' + team.shortName + '_light.svg'" 
-             alt="{{team.name}} logo" />
+             alt="{{team.name}} logo"
+             id="{{team.id}}" />
         <div>{{team.name}}</div>
       </div>
     </div>

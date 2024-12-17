@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ElementService } from './element.service';
+import { LiveMatchService } from './live-match.service';
 
-describe('ElementService', () => {
-  let service: ElementService;
+describe('LiveMatchService', () => {
+  let service: LiveMatchService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ElementService);
+    service = TestBed.inject(LiveMatchService);
   });
 
   it('should be created', () => {

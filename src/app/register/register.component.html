@@ -3,6 +3,7 @@
         <div class="form-container">
             <h1>HOCKEYWATCH</h1>
             <h2>REGISTER</h2>
+            <h3 class="error-message">{{ authenticationService.responseMsg}}</h3>
             <div>
                 <form [formGroup]="registerFormGroup" (ngSubmit)="onSubmit()">
                     <div class="form-group">
