@@ -12,16 +12,14 @@ export const authCasterGuard: CanActivateFn = (
   state: RouterStateSnapshot,
 ) => {
   const authService = inject(AuthenticationService);
-  if (authService.currentUserSignal()) {
-    const user = authService.currentUserSignal();
-    if (user && user.role === 'Caster') {
+  if (authService.isAuthenticated()) {
+    if (authService.isCaster()) {
       return true;
     }
     inject(Router).navigate(['/home']);
     return false;
-  } else {
-    if (localStorage.getItem('authToken')) {
-    }
+  } 
+  else {
     inject(Router).navigate(['/']);
     return false;
   }

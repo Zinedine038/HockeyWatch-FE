@@ -25,3 +25,7 @@ h1 {
   font-size: xx-large;
   text-align: center;
 }
+
+.admin{
+  text-decoration: underline;
+}

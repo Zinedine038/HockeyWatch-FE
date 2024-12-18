@@ -1,4 +1,3 @@
-<p (click)="goBack()"><</p>
 <div class="center" *ngIf="team">
   <img
     [src]="
@@ -9,13 +8,14 @@
   />
   <h1>{{ team.name }} - {{ team.shortName }}</h1>
   <h2>{{ team.arena }}</h2>
+  <button class="admin" *ngIf="authenticationService.isCaster()" (click)="editTeam()">Edit team</button>
 </div>
 <div class="skater" *ngFor="let skater of team.skaters">
   <button class="hover" (click)="goToPlayer(skater.id)">
     #{{ skater.number }} - {{ skater.fullName }} - {{ skater.role }}
   </button>
 </div>
-<h1>{{ team.name }}'s Fanchat:</h1>
+<h1>{{ team.name }} Fanchat:</h1>
 <div class="center">
   <form (ngSubmit)="onSubmit()">
     <input

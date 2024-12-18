@@ -23,11 +23,11 @@ import { EditPlayerComponent } from './edit-player/edit-player.component';
 
 export const routes: Routes = [
   { path: '', component: SplashComponent, canActivate: [authLoggedInGuard] },
-  { path: 'home', component: DashboardComponent },
+  { path: 'home', component: DashboardComponent, canActivate: [authGuard]},
   { path: 'dev-profile', component: DeveloperProfileComponent },
   { path: 'dev-contact', component: MailComponent },
-  { path: 'team-list', component: TeamComponent },
-  { path: 'team-info', component: TeamInfoComponent },
+  { path: 'team-list', component: TeamComponent, canActivate: [authGuard] },
+  { path: 'team-info', component: TeamInfoComponent, canActivate: [authGuard] },
   {
     path: 'register',
     component: RegisterComponent,
@@ -36,25 +36,27 @@ export const routes: Routes = [
   {
     path: 'edit-team',
     component: EditTeamComponent,
+    canActivate: [authCasterGuard],
   },
   {
     path: 'edit-player',
     component: EditPlayerComponent,
+    canActivate: [authCasterGuard],
   },
   {
     path: 'login',
     component: LoginComponent,
     canActivate: [authLoggedInGuard],
   },
-  { path: 'post-registration', component: PostRegistrationComponent },
-  { path: 'confirm', component: ConfirmComponent },
-  { path: 'players', component: PlayerListComponent },
-  { path: 'player', component: PlayerInfoComponent },
-  { path: 'match', component: MatchComponent /*, canActivate: [authGuard]*/ },
+  { path: 'post-registration', component: PostRegistrationComponent, canActivate: [authLoggedInGuard] },
+  { path: 'confirm', component: ConfirmComponent, canActivate: [authLoggedInGuard] },
+  { path: 'players', component: PlayerListComponent, canActivate: [authGuard] },
+  { path: 'player', component: PlayerInfoComponent, canActivate: [authGuard] },
+  { path: 'match', component: MatchComponent, canActivate: [authGuard] },
   {
     path: 'match-caster-dashboard',
     component:
-      MatchCasterDashboardComponent /*,canActivate: [authCasterGuard] */,
+      MatchCasterDashboardComponent,canActivate: [authCasterGuard],
   },
   { path: '**', component: PageNotFoundComponent },
 ];

@@ -5,6 +5,7 @@ import { ChatService } from '../chat.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-team-info',
@@ -15,6 +16,7 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 })
 export class TeamInfoComponent implements OnInit {
   teamService = inject(TeamService);
+  authenticationService = inject(AuthenticationService);
   chatService = inject(ChatService);
   route = inject(ActivatedRoute);
   router = inject(Router);
@@ -62,5 +64,9 @@ export class TeamInfoComponent implements OnInit {
 
   goToPlayer(id: number) {
     this.router.navigate(['/player'], { queryParams: { id } });
+  }
+
+  editTeam() {
+    this.router.navigate(['/edit-team'], { queryParams: { id: this.team.id } });
   }
 }

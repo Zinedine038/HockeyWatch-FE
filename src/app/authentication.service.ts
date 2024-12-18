@@ -7,7 +7,6 @@ import { environment } from '../environments/environment';
 import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 import { UserInterface } from './user';
-import { get } from 'cypress/types/lodash';
 
 @Injectable({
   providedIn: 'root',
@@ -68,6 +67,12 @@ export class AuthenticationService {
   isAuthenticated(): boolean {
     const token = localStorage.getItem('authToken');
     if (token) {
+      const decoded: any = jwtDecode(token);
+      const exp = decoded.exp;
+      if (exp < Date.now() / 1000) {
+        localStorage.removeItem('authToken');
+        return false;
+      }
       return true;
     }
     return false;

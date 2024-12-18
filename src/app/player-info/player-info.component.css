@@ -16,3 +16,7 @@ img {
   align-items: center;
   text-align: left;
 }
+
+button{
+  text-decoration: underline;
+}

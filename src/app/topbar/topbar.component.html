@@ -8,9 +8,9 @@
     <li class="topBarElement hover"><a href="/players">PLAYERS</a></li>
     <!-- access localStorage and get displayname -->
     <li class="topBarElement">
-      <a href="/users">{{
-        authService.currentUserSignal()?.username?.toUpperCase() || ""
-      }}</a>
+      {{
+        (authService.getUserName() || "").toUpperCase()
+      }}
     </li>
     <li class="topBarElement hover">
       <a href="/" (click)="logout()">LOGOUT</a>
