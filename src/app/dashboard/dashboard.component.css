@@ -1,5 +1,6 @@
 .dashboard {
   background-color: white;
+  text-align: center;
 }
 
 .logos {
@@ -11,4 +12,8 @@
 .matches {
   text-align: center;
   margin-bottom: 5rem;
+}
+
+h1 {
+  font-size: xx-large;
 }

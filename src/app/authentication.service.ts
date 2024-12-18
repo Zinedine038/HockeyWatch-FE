@@ -7,15 +7,15 @@ import { environment } from '../environments/environment';
 import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 import { UserInterface } from './user';
+import { get } from 'cypress/types/lodash';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationService {
-
-  registerUrl = "Account/register"
-  loginUrl = "Account/login"
-  confirmUrl = "Account/confirm"
+  registerUrl = 'Account/register';
+  loginUrl = 'Account/login';
+  confirmUrl = 'Account/confirm';
   responseMsg = '';
 
   currentUserSignal = signal<UserInterface | undefined | null>(undefined);
@@ -37,6 +37,10 @@ export class AuthenticationService {
       });
   }
 
+  isCaster(): boolean {
+    return this.getRoles().includes('Caster');
+  }
+
   getRoles(): string[] {
     const token = localStorage.getItem('authToken');
     if (token) {
@@ -50,14 +54,15 @@ export class AuthenticationService {
 
   confirm(guid: string) {
     this.resetResponseMsg();
-    return this.http.get(`${environment.apiUrl}${this.confirmUrl}/${guid}`).pipe(
-      catchError((error) => {
-        this.responseMsg = error.error.message;
-        return throwError(error);
-      })
-    ).subscribe((response: any) => {
-      
-    });
+    return this.http
+      .get(`${environment.apiUrl}${this.confirmUrl}/${guid}`)
+      .pipe(
+        catchError((error) => {
+          this.responseMsg = error.error.message;
+          return throwError(error);
+        }),
+      )
+      .subscribe((response: any) => {});
   }
 
   isAuthenticated(): boolean {
@@ -79,51 +84,58 @@ export class AuthenticationService {
     return '';
   }
 
-
-  public register(user: Register){
+  public register(user: Register) {
     this.resetResponseMsg();
-    return this.http.post(`${environment.apiUrl}${this.registerUrl}`, user).pipe(
-      catchError((error) => {
-        this.responseMsg = error.error.message;
-        return throwError(error);
-      })
-    ).subscribe((response: any) => {
-        if(response.message === 'User created')
-        {
+    return this.http
+      .post(`${environment.apiUrl}${this.registerUrl}`, user)
+      .pipe(
+        catchError((error) => {
+          this.responseMsg = error.error.message;
+          return throwError(error);
+        }),
+      )
+      .subscribe((response: any) => {
+        if (response.message === 'User created') {
           this.router.navigate(['/post-registration']);
         }
-    });
-  };
-  
-
-  public login(user: Login){
-    this.resetResponseMsg();
-    return this.http.post(`${environment.apiUrl}${this.loginUrl}`, user).pipe(
-      catchError((error) => {
-        this.responseMsg = error.error.message;
-        return throwError(error);
-      })
-    ).subscribe((response: any) => {
-      const token = response.token;
-      const displayName = response.displayName;
-      const email = response.userName;
-      const decoded: any = jwtDecode(token);
-      const role = decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
-      if(token){
-        let currUser: UserInterface = {
-          email: email,
-          token: token,
-          username: displayName,
-          role: role
-        }
-        this.currentUserSignal.set(currUser);
-        console.log(this.currentUserSignal())
-        localStorage.setItem('authToken', token);
-        this.router.navigate(['/home']);
-      }});
+      });
   }
 
-  public resetResponseMsg(){
+  public login(user: Login) {
+    this.resetResponseMsg();
+    return this.http
+      .post(`${environment.apiUrl}${this.loginUrl}`, user)
+      .pipe(
+        catchError((error) => {
+          this.responseMsg = error.error.message;
+          return throwError(error);
+        }),
+      )
+      .subscribe((response: any) => {
+        const token = response.token;
+        const displayName = response.displayName;
+        const email = response.userName;
+        const decoded: any = jwtDecode(token);
+        const role =
+          decoded[
+            'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'
+          ];
+        if (token) {
+          let currUser: UserInterface = {
+            email: email,
+            token: token,
+            username: displayName,
+            role: role,
+          };
+          this.currentUserSignal.set(currUser);
+          console.log(this.currentUserSignal());
+          localStorage.setItem('authToken', token);
+          this.router.navigate(['/home']);
+        }
+      });
+  }
+
+  public resetResponseMsg() {
     this.responseMsg = '';
   }
 }

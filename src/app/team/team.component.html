@@ -1,14 +1,21 @@
-<div class="container">
+<div class="container,center">
   <div *ngFor="let conference of teams">
     <div class="conference-title">{{ conference.name }} Conference</div>
     <div *ngFor="let division of conference.divisions" class="division">
       <div class="division-title">{{ division.name }}</div>
       <div *ngFor="let team of division.teams" class="team">
-        <img (click)="viewTeam(team.id)" 
-             [src]="'https://assets.nhle.com/logos/nhl/svg/' + team.shortName + '_light.svg'" 
-             alt="{{team.name}} logo"
-             id="{{team.id}}" />
-        <div>{{team.name}}</div>
+        <img
+          class="hover"
+          (click)="viewTeam(team.id)"
+          [src]="
+            'https://assets.nhle.com/logos/nhl/svg/' +
+            team.shortName +
+            '_light.svg'
+          "
+          alt="{{ team.name }} logo"
+          id="{{ team.id }}"
+        />
+        <div>{{ team.name }}</div>
       </div>
     </div>
   </div>

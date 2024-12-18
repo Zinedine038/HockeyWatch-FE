@@ -1,7 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, Inject, inject } from '@angular/core';
 import { SkaterService } from '../skater.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { TeamService } from '../team.service';
+import { LogoService } from '../logo.service';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-player-info',
@@ -11,9 +14,12 @@ import { Location } from '@angular/common';
   styleUrl: './player-info.component.css',
 })
 export class PlayerInfoComponent {
+  authenticationService = inject(AuthenticationService);
   skaterService = inject(SkaterService);
   route = inject(ActivatedRoute);
   location = inject(Location);
+  teamService = inject(TeamService);
+  logoService = inject(LogoService);
 
   id?: number;
 
@@ -27,7 +33,15 @@ export class PlayerInfoComponent {
 
   async loadPlayer(id: number) {
     await this.skaterService.getSkatersById(id).subscribe({
-      next: (player) => (this.player = player),
+      next: (player) => {
+        this.player = player;
+        this.teamService.getTeamInfo(player.teamId).subscribe({
+          next: (team) => {
+            this.player.team = team;
+          },
+          error: (error) => console.log(error),
+        });
+      },
       error: (error) => console.log(error),
     });
   }

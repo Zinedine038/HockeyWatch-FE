@@ -11,10 +11,12 @@
   <h2>{{ team.arena }}</h2>
 </div>
 <div class="skater" *ngFor="let skater of team.skaters">
-  <h4>#{{ skater.number }} - {{ skater.fullName }} - {{ skater.role }}</h4>
+  <button class="hover" (click)="goToPlayer(skater.id)">
+    #{{ skater.number }} - {{ skater.fullName }} - {{ skater.role }}
+  </button>
 </div>
-
-<div>
+<h1>{{ team.name }}'s Fanchat:</h1>
+<div class="center">
   <form (ngSubmit)="onSubmit()">
     <input
       id="message"
@@ -24,7 +26,7 @@
     <button type="submit">Send</button>
   </form>
   <div class="chatBox" id="chatBox">
-    <div *ngFor="let msg of messages.reverse()">
+    <div class="left" *ngFor="let msg of messages.reverse()">
       {{ msg }}
     </div>
   </div>

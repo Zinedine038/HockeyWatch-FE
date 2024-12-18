@@ -29,14 +29,12 @@ export class MatchComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    if(this.authenticationService.getRoles().includes('Caster')){
+    if (this.authenticationService.getRoles().includes('Caster')) {
       this.caster = true;
     }
-    this.route.queryParams
-      .subscribe(params => {
-        return this.loadMatch(params['id']);  
-      })
-
+    this.route.queryParams.subscribe((params) => {
+      return this.loadMatch(params['id']);
+    });
   }
 
   async loadMatch(id: number) {
@@ -48,8 +46,19 @@ export class MatchComponent implements OnInit {
 
   goToMatchCasterDashboard() {
     this.router.navigate(['/match-caster-dashboard'], {
-      queryParams: { id: this.match.id }
-    });  
+      queryParams: { id: this.match.id },
+    });
   }
 
+  goToPlayer(id: number) {
+    this.router.navigate(['/player'], {
+      queryParams: { id: id },
+    });
+  }
+
+  goToTeam(id: number) {
+    this.router.navigate(['/team-info'], {
+      queryParams: { id: id },
+    });
+  }
 }

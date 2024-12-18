@@ -1,0 +1,38 @@
+img {
+  height: 200px;
+}
+
+h1 {
+  font-size: xx-large;
+}
+
+.container {
+  /* center div */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input {
+  outline: black 1px solid;
+}
+
+.form-group {
+  display: flex;
+  justify-content: flex-start; /* Zorg dat ze vanaf links starten */
+  align-items: center; /* Verticaal centreren */
+  margin-bottom: 10px; /* Ruimte tussen de groepen */
+  width: 100%; /* Zorg dat alles de volle breedte pakt */
+}
+
+.form-group label {
+  flex: 0 0 100px; /* Label krijgt een vaste breedte */
+  text-align: right; /* Tekst netjes rechts uitlijnen */
+  margin-right: 10px;
+}
+
+.form-group input {
+  flex: 1; /* Input neemt de rest van de ruimte */
+  max-width: 300px; /* Niet groter dan dit */
+  box-sizing: border-box; /* Border inbegrepen in de breedte */
+}

@@ -2,11 +2,15 @@
   <div class="match">
     <div class="title">
       <img
+        class="hover"
+        (click)="goToTeam(match.homeTeam.id)"
         src="{{ logoService.getLogoLight(match.homeTeam.shortName) }}"
         width="100"
       />
       vs
       <img
+        class="hover"
+        (click)="goToTeam(match.awayTeam.id)"
         src="{{ logoService.getLogoLight(match.awayTeam.shortName) }}"
         width="100"
       />
@@ -19,7 +23,7 @@
     <div class="home">
       <ul>
         <li *ngFor="let player of match.homeTeam.skaters">
-          <div class="player">
+          <div class="player hover" (click)="goToPlayer(player.id)">
             <img
               src="{{ logoService.getLogoLight(match.homeTeam.shortName) }}"
               width="50"
@@ -33,7 +37,7 @@
       Goalie:
       <ul>
         <li *ngFor="let player of match.homeTeam.goalies">
-          <div class="player">
+          <div class="player hover" (click)="goToPlayer(player.id)">
             <img
               src="{{ logoService.getLogoLight(match.homeTeam.shortName) }}"
               width="50"
@@ -48,7 +52,7 @@
     <div class="away">
       <ul>
         <li *ngFor="let player of match.awayTeam.skaters">
-          <div class="player">
+          <div class="player hover" (click)="goToPlayer(player.id)">
             <img
               src="{{ logoService.getLogoLight(match.awayTeam.shortName) }}"
               width="50"
@@ -62,7 +66,7 @@
       Goalie:
       <ul>
         <li *ngFor="let player of match.awayTeam.goalies">
-          <div class="player">
+          <div class="player hover" (click)="goToPlayer(player.id)">
             <img
               src="{{ logoService.getLogoLight(match.awayTeam.shortName) }}"
               width="50"
@@ -76,10 +80,6 @@
     </div>
   </div>
 </div>
-<div *ngIf="caster">
-    <button (click)="goToMatchCasterDashboard()">Manage Match</button>
+<div *ngIf="authenticationService.isCaster()">
+  <button (click)="goToMatchCasterDashboard()">Manage Match</button>
 </div>
-
-<!-- <div class="rink">
-    <img src="../../assets/images/ice-hockey-rink-from-top-by-Vexels.svg" alt="logo" width="1300" height="1300">
-</div> -->

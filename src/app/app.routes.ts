@@ -18,21 +18,43 @@ import { authGuard } from './auth.guard';
 import { authLoggedInGuard } from './auth-loggedin-guard';
 import { ConfirmComponent } from './confirm/confirm.component';
 import { PostRegistrationComponent } from './post-registration/post-registration.component';
+import { EditTeamComponent } from './edit-team/edit-team.component';
+import { EditPlayerComponent } from './edit-player/edit-player.component';
 
 export const routes: Routes = [
-    { path: '', component: SplashComponent, canActivate: [authLoggedInGuard] },
-    { path: 'home', component: DashboardComponent},
-    { path: 'dev-profile', component: DeveloperProfileComponent },
-    { path: 'dev-contact', component: MailComponent },
-    { path: 'team-list', component: TeamComponent },
-    { path: 'team-info', component: TeamInfoComponent },
-    { path: 'register', component: RegisterComponent, canActivate: [authLoggedInGuard]},
-    { path: 'login', component: LoginComponent, canActivate: [authLoggedInGuard]},
-    { path: 'post-registration', component: PostRegistrationComponent},
-    { path: 'confirm', component: ConfirmComponent},
-    { path: 'players', component: PlayerListComponent},
-    { path: 'player', component: PlayerInfoComponent},
-    { path: 'match', component: MatchComponent /*, canActivate: [authGuard]*/},
-    { path: 'match-caster-dashboard', component: MatchCasterDashboardComponent /*,canActivate: [authCasterGuard] */},	
-    { path: '**', component: PageNotFoundComponent }
+  { path: '', component: SplashComponent, canActivate: [authLoggedInGuard] },
+  { path: 'home', component: DashboardComponent },
+  { path: 'dev-profile', component: DeveloperProfileComponent },
+  { path: 'dev-contact', component: MailComponent },
+  { path: 'team-list', component: TeamComponent },
+  { path: 'team-info', component: TeamInfoComponent },
+  {
+    path: 'register',
+    component: RegisterComponent,
+    canActivate: [authLoggedInGuard],
+  },
+  {
+    path: 'edit-team',
+    component: EditTeamComponent,
+  },
+  {
+    path: 'edit-player',
+    component: EditPlayerComponent,
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    canActivate: [authLoggedInGuard],
+  },
+  { path: 'post-registration', component: PostRegistrationComponent },
+  { path: 'confirm', component: ConfirmComponent },
+  { path: 'players', component: PlayerListComponent },
+  { path: 'player', component: PlayerInfoComponent },
+  { path: 'match', component: MatchComponent /*, canActivate: [authGuard]*/ },
+  {
+    path: 'match-caster-dashboard',
+    component:
+      MatchCasterDashboardComponent /*,canActivate: [authCasterGuard] */,
+  },
+  { path: '**', component: PageNotFoundComponent },
 ];

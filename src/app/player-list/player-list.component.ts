@@ -3,6 +3,7 @@ import { NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
 import { SkaterService } from '../skater.service';
 import { TeamService } from '../team.service';
 import { forkJoin } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-player-list',
@@ -14,6 +15,7 @@ import { forkJoin } from 'rxjs';
 export class PlayerListComponent {
   skaterService = inject(SkaterService);
   teamService = inject(TeamService);
+  router = inject(Router);
 
   skaters: any;
   teams: any;
@@ -44,5 +46,9 @@ export class PlayerListComponent {
       },
       error: (error) => console.log(error),
     });
+  }
+
+  goToPlayer(id: number) {
+    this.router.navigate(['/player'], { queryParams: { id } });
   }
 }

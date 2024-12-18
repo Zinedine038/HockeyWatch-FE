@@ -1,0 +1,21 @@
+<div class="container">
+  <h1>Editing {{ team.name }}</h1>
+  <div *ngIf="{ team }">
+    <img [src]="logoService.getLogoDark(team.shortName)" />
+    <form [formGroup]="teamFormGroup" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input id="name" type="text" formControlName="name" />
+      </div>
+      <div class="form-group">
+        <label for="shortName">Short Name</label>
+        <input id="shortName" type="text" formControlName="shortName" />
+      </div>
+      <div class="form-group">
+        <label for="arena">Arena</label>
+        <input id="arena" type="text" formControlName="arena" />
+      </div>
+      <button type="submit">Save</button>
+    </form>
+  </div>
+</div>

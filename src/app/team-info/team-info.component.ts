@@ -17,6 +17,7 @@ export class TeamInfoComponent implements OnInit {
   teamService = inject(TeamService);
   chatService = inject(ChatService);
   route = inject(ActivatedRoute);
+  router = inject(Router);
   location = inject(Location);
 
   message = new FormControl('');
@@ -57,5 +58,9 @@ export class TeamInfoComponent implements OnInit {
 
   goBack() {
     this.location.back();
+  }
+
+  goToPlayer(id: number) {
+    this.router.navigate(['/player'], { queryParams: { id } });
   }
 }

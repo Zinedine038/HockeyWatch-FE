@@ -6,6 +6,10 @@
   align-content: center;
 }
 
+.left {
+  text-align: left;
+}
+
 .skater {
   text-align: center;
 }
@@ -13,4 +17,11 @@
 .chatBox {
   overflow-y: scroll;
   height: 400px;
+  width: 400px;
+}
+
+h1 {
+  margin-top: 20px;
+  font-size: xx-large;
+  text-align: center;
 }

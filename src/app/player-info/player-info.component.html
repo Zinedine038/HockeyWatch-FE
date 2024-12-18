@@ -1,1 +1,13 @@
-{{ player.firstName }}
+<div class="playerInfo">
+  <h1>{{ player.firstName }} {{ player.lastName }}</h1>
+  <h2>{{ player.team.name }} #{{ player.number }} {{ player.role }}</h2>
+  <h3>Height: {{ player.height }} Ft.</h3>
+  <h3>Weight: {{ player.weight }} Lb.</h3>
+  <h3>Goals: {{ player.goals }}</h3>
+  <h3>Assists: {{ player.assists }}</h3>
+  <h3>Points: {{ player.points }}</h3>
+  <h3>Games Played: {{ player.gamesPlayed }}</h3>
+  <h3>Games Won: {{ player.gamesWon }}</h3>
+  <h3>Games Lost: {{ player.gamesLost }}</h3>
+  <img [src]="logoService.getLogoDark(player.team.shortName)" />
+</div>

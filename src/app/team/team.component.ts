@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { TeamService } from '../team.service';
 import { NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
 import { Router } from '@angular/router';
+import { EditTeamDto } from '../models/editTeamDto';
 
 @Component({
   selector: 'app-team',
