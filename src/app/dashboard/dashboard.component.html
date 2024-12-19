@@ -74,7 +74,7 @@
       />
     </div>
     <h3>{{ match.homeTeam.name }} vs {{ match.awayTeam.name }}</h3>
-    <p>{{ match.date }}</p>
+    <p>{{ formatTime(match.date) }}</p>
   </div>
 </div>
 <div class="matches" *ngIf="!sortedMatches[2][0]">

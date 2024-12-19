@@ -1,7 +1,7 @@
 <div class="container">
   <h1>Editing {{ player.fullName }}</h1>
   <div *ngIf="{ player }">
-    <img [src]="logoService.getLogoDark(player.team.shortName)" />
+    <img [src]="logoService.getLogoLight(player.team.shortName)" />
     <form [formGroup]="playerFormGroup" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="firstName">First Name</label>
